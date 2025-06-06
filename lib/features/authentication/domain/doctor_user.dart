@@ -1,5 +1,4 @@
-class AppUser {
-  final String id;
+class DoctorUser {
   final String email;
   final String name;
   final String phoneNumber;
@@ -9,9 +8,13 @@ class AppUser {
   final double longitude;
   final String userId;
   final String type;
+  final String? specialization;
+  final String? description;
+  final int? yearsOfExperience;
+  final int rating;
+  final int numberOfReviews;
 
-  const AppUser({
-    required this.id,
+  const DoctorUser({
     required this.email,
     required this.name,
     required this.phoneNumber,
@@ -21,14 +24,18 @@ class AppUser {
     required this.longitude,
     required this.userId,
     required this.type,
+    this.specialization,
+    this.description,
+    this.yearsOfExperience,
+    required this.rating,
+    required this.numberOfReviews,
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is AppUser &&
+      (other is DoctorUser &&
           runtimeType == other.runtimeType &&
-          id == other.id &&
           email == other.email &&
           name == other.name &&
           phoneNumber == other.phoneNumber &&
@@ -37,11 +44,15 @@ class AppUser {
           latitude == other.latitude &&
           longitude == other.longitude &&
           userId == other.userId &&
-          type == other.type);
+          type == other.type &&
+          specialization == other.specialization &&
+          description == other.description &&
+          yearsOfExperience == other.yearsOfExperience &&
+          rating == other.rating &&
+          numberOfReviews == other.numberOfReviews);
 
   @override
   int get hashCode =>
-      id.hashCode ^
       email.hashCode ^
       name.hashCode ^
       phoneNumber.hashCode ^
@@ -50,12 +61,16 @@ class AppUser {
       latitude.hashCode ^
       longitude.hashCode ^
       userId.hashCode ^
-      type.hashCode;
+      type.hashCode ^
+      specialization.hashCode ^
+      description.hashCode ^
+      yearsOfExperience.hashCode ^
+      rating.hashCode ^
+      numberOfReviews.hashCode;
 
   @override
   String toString() {
-    return 'AppUser{'
-        ' id: $id,'
+    return 'DoctorUser{'
         ' email: $email,'
         ' name: $name,'
         ' phoneNumber: $phoneNumber,'
@@ -65,11 +80,15 @@ class AppUser {
         ' longitude: $longitude,'
         ' userId: $userId,'
         ' type: $type,'
+        ' specialization: $specialization,'
+        ' description: $description,'
+        ' yearsOfExperience: $yearsOfExperience,'
+        ' rating: $rating,'
+        ' numberOfReviews: $numberOfReviews,'
         '}';
   }
 
-  AppUser copyWith({
-    String? id,
+  DoctorUser copyWith({
     String? email,
     String? name,
     String? phoneNumber,
@@ -79,9 +98,13 @@ class AppUser {
     double? longitude,
     String? userId,
     String? type,
+    String? specialization,
+    String? description,
+    int? yearsOfExperience,
+    int? rating,
+    int? numberOfReviews,
   }) {
-    return AppUser(
-      id: id ?? this.id,
+    return DoctorUser(
       email: email ?? this.email,
       name: name ?? this.name,
       phoneNumber: phoneNumber ?? this.phoneNumber,
@@ -91,12 +114,16 @@ class AppUser {
       longitude: longitude ?? this.longitude,
       userId: userId ?? this.userId,
       type: type ?? this.type,
+      specialization: specialization ?? this.specialization,
+      description: description ?? this.description,
+      yearsOfExperience: yearsOfExperience ?? this.yearsOfExperience,
+      rating: rating ?? this.rating,
+      numberOfReviews: numberOfReviews ?? this.numberOfReviews,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'email': email,
       'name': name,
       'phoneNumber': phoneNumber,
@@ -106,21 +133,30 @@ class AppUser {
       'longitude': longitude,
       'userId': userId,
       'type': type,
+      'specialization': specialization,
+      'description': description,
+      'yearsOfExperience': yearsOfExperience,
+      'rating': rating,
+      'numberOfReviews': numberOfReviews,
     };
   }
 
-  factory AppUser.fromMap(Map<String, dynamic> map) {
-    return AppUser(
-      id: map['id'] as String,
-      email: map['email'] as String,
-      name: map['name'] as String,
-      phoneNumber: map['phoneNumber'] as String,
-      imageUrl: map['imageUrl'] as String,
-      location: map['location'] as String,
-      latitude: map['latitude'] as double,
-      longitude: map['longitude'] as double,
-      userId: map['userId'] as String,
-      type: map['type'] as String,
+  factory DoctorUser.fromMap(Map<String, dynamic> map) {
+    return DoctorUser(
+      email: map['email'],
+      name: map['name'],
+      phoneNumber: map['phoneNumber'],
+      imageUrl: map['imageUrl'],
+      location: map['location'],
+      latitude: map['latitude'],
+      longitude: map['longitude'],
+      userId: map['userId'],
+      type: map['type'],
+      specialization: map['specialization'],
+      description: map['description'],
+      yearsOfExperience: map['yearsOfExperience'],
+      rating: map['rating'],
+      numberOfReviews: map['numberOfReviews'],
     );
   }
 }

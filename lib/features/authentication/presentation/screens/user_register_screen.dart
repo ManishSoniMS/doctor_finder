@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:doctor_finder/features/authentication/presentation/widgets/async_value_ui.dart';
 import 'package:doctor_finder/gen/assets.gen.dart';
 import 'package:doctor_finder/utils/app_style.dart';
 import 'package:doctor_finder/utils/size_config.dart';
@@ -12,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../../routes/routes.dart';
 import '../../../../utils/keys.dart';
+import '../controller/auth_controller.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_container.dart';
 import '../widgets/common_text_form_field.dart';
@@ -60,6 +62,12 @@ class _UserRegisterScreenState extends ConsumerState<UserRegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authController = ref.watch(authControllerProvider);
+
+    ref.listen(authControllerProvider, (p, c) {
+      c.showAlertDialogOnError(context);
+    });
+
     return Scaffold(
       backgroundColor: AppStyles.mainColor,
       body: SafeArea(
@@ -160,9 +168,23 @@ class _UserRegisterScreenState extends ConsumerState<UserRegisterScreen> {
                   ),
                   SizedBox(height: 20.rsH),
                   CommonButton(
-                    onTap: () {},
+                    onTap: () {
+                      ref
+                          .read(authControllerProvider.notifier)
+                          .createUserWithEmailAndPassword(
+                            email: _emailController.text.trim(),
+                            password: _passwordController.text.trim(),
+                            name: _nameController.text.trim(),
+                            phoneNumber: _phoneNumberController.text.trim(),
+                            imageUrl: _selectedImage,
+                            location: _locationController.text.trim(),
+                            latitude: _latitude,
+                            longitude: _longitude,
+                            type: "user",
+                          );
+                    },
                     title: "Register Me",
-                    isLoading: false,
+                    isLoading: authController.isLoading,
                   ),
                   SizedBox(height: 20.rsH),
                   Text(

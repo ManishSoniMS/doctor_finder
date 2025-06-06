@@ -1,3 +1,4 @@
+import 'package:doctor_finder/features/authentication/presentation/widgets/async_value_ui.dart';
 import 'package:doctor_finder/features/authentication/presentation/widgets/common_button.dart';
 import 'package:doctor_finder/features/authentication/presentation/widgets/common_container.dart';
 import 'package:doctor_finder/gen/assets.gen.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../controller/auth_controller.dart';
 import '../widgets/common_text_form_field.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
@@ -31,6 +33,12 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authController = ref.watch(authControllerProvider);
+
+    ref.listen(authControllerProvider, (p, c) {
+      c.showAlertDialogOnError(context);
+    });
+
     return Scaffold(
       backgroundColor: AppStyles.mainColor,
       body: SafeArea(
@@ -76,9 +84,15 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                   ),
                   SizedBox(height: 20.rsH),
                   CommonButton(
-                    onTap: () {},
+                    onTap: () {
+                      final email = _emailController.text.trim();
+                      final password = _passwordController.text.trim();
+                      ref
+                          .read(authControllerProvider.notifier)
+                          .signInWithEmailAndPassword(email, password);
+                    },
                     title: "Sign In",
-                    isLoading: false,
+                    isLoading: authController.isLoading,
                   ),
                   SizedBox(height: 20.rsH),
                   Text(

@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:doctor_finder/features/authentication/presentation/controller/auth_controller.dart';
+import 'package:doctor_finder/features/authentication/presentation/widgets/async_value_ui.dart';
 import 'package:doctor_finder/utils/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_maps_webservices/geocoding.dart';
@@ -69,6 +71,10 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final specializationList = ref.watch(specializationListProvider);
+    final authController = ref.watch(authControllerProvider);
+    ref.listen(authControllerProvider, (p, c) {
+      c.showAlertDialogOnError(context);
+    });
     return Scaffold(
       backgroundColor: AppStyles.mainColor,
       body: SafeArea(
@@ -203,9 +209,25 @@ class _DoctorRegisterScreenState extends ConsumerState<DoctorRegisterScreen> {
                   ),
                   SizedBox(height: 20.rsH),
                   CommonButton(
-                    onTap: () {},
+                    onTap: () {
+                      ref
+                          .read(authControllerProvider.notifier)
+                          .createDoctorUserWithEmailAndPassword(
+                            email: _emailController.text.trim(),
+                            password: _passwordController.text.trim(),
+                            name: _nameController.text.trim(),
+                            phoneNumber: _phoneNumberController.text.trim(),
+                            imageUrl: _selectedImage,
+                            location: _locationController.text.trim(),
+                            latitude: _latitude,
+                            longitude: _longitude,
+                            type: "doctor",
+                            specialization: _selectedSpecialization ?? "",
+                            description: _descriptionController.text.trim(),
+                          );
+                    },
                     title: "Register Me",
-                    isLoading: false,
+                    isLoading: authController.isLoading,
                   ),
                   SizedBox(height: 20.rsH),
                   Text(
