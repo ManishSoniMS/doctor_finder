@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "956602096437",
+    "project_id": "doctor-finder-c4a42",
+    "storage_bucket": "doctor-finder-c4a42.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956602096437:android:b08b2684609aee3d7e4a7c",
+        "android_client_info": {
+          "package_name": "com.manishsoni.doctor_finder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnXmxHK_PvSX-MZZ3OLIbLs66t7dCX7jM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
