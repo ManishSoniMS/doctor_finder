@@ -97,7 +97,7 @@ class AuthController extends _$AuthController {
 
     state = await AsyncValue.guard(() async {
       final authRepository = ref.read(authRepositoryProvider);
-      await authRepository.createDoctorUserWithEmailAndPassword(
+      return await authRepository.createDoctorUserWithEmailAndPassword(
         email: email,
         password: password,
         name: name,

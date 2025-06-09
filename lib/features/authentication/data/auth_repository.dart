@@ -29,6 +29,11 @@ User? currentUser(Ref ref) {
   return ref.watch(authRepositoryProvider).currentUser;
 }
 
+@riverpod
+void signOut(Ref ref) {
+  ref.watch(authRepositoryProvider).signOut();
+}
+
 class AuthRepository {
   AuthRepository(this._auth);
 
@@ -90,14 +95,12 @@ class AuthRepository {
   Future<void> createDoctorUserWithEmailAndPassword({
     required String email,
     required String password,
-
     required String name,
     required String phoneNumber,
     required File? imageUrl,
     required String location,
     required double latitude,
     required double longitude,
-
     required String type,
     required String specialization,
     required String description,
@@ -127,7 +130,7 @@ class AuthRepository {
     }
 
     await FirebaseFirestore.instance
-        .collection('doctors')
+        .collection('users')
         .doc(cred.user!.uid)
         .set({
           'email': email,

@@ -5,19 +5,19 @@ class AppStyles {
   AppStyles._();
 
   static final headingTextStyle = TextStyle(
-    fontSize: 20.rsH,
+    fontSize: 20.rsW,
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
 
   static final titleTextStyle = TextStyle(
-    fontSize: 18.rsH,
+    fontSize: 18.rsW,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
 
   static final normalTextStyle = TextStyle(
-    fontSize: 15.rsH,
+    fontSize: 15.rsW,
     fontWeight: FontWeight.w400,
     color: Colors.white,
   );

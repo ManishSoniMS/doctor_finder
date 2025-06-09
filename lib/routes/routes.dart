@@ -1,14 +1,14 @@
-import 'package:doctor_finder/features/authentication/data/auth_repository.dart';
-import 'package:doctor_finder/features/user_management/presentation/screens/main_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../features/authentication/data/auth_repository.dart';
 import '../features/intro_screens/on_boarding_screen.dart';
 import '../features/authentication/presentation/screens/signin_screen.dart';
 import '../features/intro_screens/splash_screen.dart';
 import '../features/authentication/presentation/screens/doctor_register_screen.dart';
 import '../features/authentication/presentation/screens/user_register_screen.dart';
+import '../features/user_management/presentation/screens/main_screen.dart';
 import 'go_router_refresh_stream.dart';
 
 part 'routes.g.dart';

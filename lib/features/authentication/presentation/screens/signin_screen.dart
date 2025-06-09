@@ -1,15 +1,15 @@
 import 'package:doctor_finder/features/authentication/presentation/widgets/async_value_ui.dart';
-import 'package:doctor_finder/features/authentication/presentation/widgets/common_button.dart';
-import 'package:doctor_finder/features/authentication/presentation/widgets/common_container.dart';
-import 'package:doctor_finder/gen/assets.gen.dart';
-import 'package:doctor_finder/routes/routes.dart';
-import 'package:doctor_finder/utils/app_style.dart';
 import 'package:doctor_finder/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../gen/assets.gen.dart';
+import '../../../../routes/routes.dart';
+import '../../../../utils/app_style.dart';
 import '../controller/auth_controller.dart';
+import '../widgets/common_button.dart';
+import '../widgets/common_container.dart';
 import '../widgets/common_text_form_field.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {

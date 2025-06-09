@@ -1,8 +1,5 @@
 import 'dart:io';
 
-import 'package:doctor_finder/features/authentication/presentation/controller/auth_controller.dart';
-import 'package:doctor_finder/features/authentication/presentation/widgets/async_value_ui.dart';
-import 'package:doctor_finder/utils/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_maps_webservices/geocoding.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,11 +10,14 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../routes/routes.dart';
 import '../../../../utils/app_style.dart';
+import '../../../../utils/keys.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/specialization_list.dart';
+import '../controller/auth_controller.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_container.dart';
 import '../widgets/common_text_form_field.dart';
+import '/features/authentication/presentation/widgets/async_value_ui.dart';
 
 class DoctorRegisterScreen extends ConsumerStatefulWidget {
   const DoctorRegisterScreen({super.key});

@@ -1,9 +1,5 @@
 import 'dart:io';
 
-import 'package:doctor_finder/features/authentication/presentation/widgets/async_value_ui.dart';
-import 'package:doctor_finder/gen/assets.gen.dart';
-import 'package:doctor_finder/utils/app_style.dart';
-import 'package:doctor_finder/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_maps_webservices/geocoding.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,12 +7,16 @@ import 'package:go_router/go_router.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../../gen/assets.gen.dart';
 import '../../../../routes/routes.dart';
+import '../../../../utils/app_style.dart';
 import '../../../../utils/keys.dart';
 import '../controller/auth_controller.dart';
 import '../widgets/common_button.dart';
 import '../widgets/common_container.dart';
 import '../widgets/common_text_form_field.dart';
+import '/features/authentication/presentation/widgets/async_value_ui.dart';
+import '/utils/size_config.dart';
 
 class UserRegisterScreen extends ConsumerStatefulWidget {
   const UserRegisterScreen({super.key});

@@ -39,6 +39,13 @@ class MyApp extends ConsumerWidget {
       appBarTheme: AppBarTheme(
         backgroundColor: AppStyles.mainColor,
         iconTheme: IconThemeData(color: Colors.white, size: 30.0),
+        titleTextStyle: TextStyle(fontSize: 20, color: Colors.white),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppStyles.mainColor,
+          foregroundColor: Colors.white,
+        ),
       ),
 
       inputDecorationTheme: InputDecorationTheme(

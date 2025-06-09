@@ -1,13 +1,6 @@
-class DoctorUser {
-  final String email;
-  final String name;
-  final String phoneNumber;
-  final String? imageUrl;
-  final String location;
-  final double latitude;
-  final double longitude;
-  final String userId;
-  final String type;
+import 'app_user.dart';
+
+class DoctorUser extends AppUser {
   final String? specialization;
   final String? description;
   final int? yearsOfExperience;
@@ -15,15 +8,15 @@ class DoctorUser {
   final int numberOfReviews;
 
   const DoctorUser({
-    required this.email,
-    required this.name,
-    required this.phoneNumber,
-    this.imageUrl,
-    required this.location,
-    required this.latitude,
-    required this.longitude,
-    required this.userId,
-    required this.type,
+    required super.email,
+    required super.name,
+    required super.phoneNumber,
+    super.imageUrl,
+    required super.location,
+    required super.latitude,
+    required super.longitude,
+    required super.userId,
+    required super.type,
     this.specialization,
     this.description,
     this.yearsOfExperience,
@@ -88,6 +81,7 @@ class DoctorUser {
         '}';
   }
 
+  @override
   DoctorUser copyWith({
     String? email,
     String? name,
@@ -122,6 +116,7 @@ class DoctorUser {
     );
   }
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'email': email,
