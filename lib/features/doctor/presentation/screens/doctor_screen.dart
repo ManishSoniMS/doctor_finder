@@ -1,16 +1,27 @@
-import 'package:doctor_finder/features/doctor/presentation/widgets/search_bar_widget.dart';
+import 'package:doctor_finder/features/authentication/presentation/widgets/async_value_ui.dart';
 import 'package:doctor_finder/utils/size_config.dart';
-import 'package:doctor_finder/utils/specialization_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../utils/app_style.dart';
+import '../../../../common_widget/async_value_widget.dart';
+import '../../../user_management/data/user_repository.dart';
+import '../../../user_management/presentation/providers/specialization_provider.dart';
+import '../widgets/doctor_list_tile_widget.dart';
+import '../widgets/doctor_specialization_widget.dart';
+import '../widgets/search_bar_widget.dart';
 
 class DoctorScreen extends ConsumerWidget {
   const DoctorScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final specialization = ref.watch(specializationNotifierProvider);
+    final doctorsAsyncValue = ref.watch(loadDoctorProvider(specialization));
+
+    ref.listen(
+      loadDoctorProvider(specialization),
+      (_, state) => state.showAlertDialogOnError(context),
+    );
     return Scaffold(
       appBar: AppBar(title: Text('Doctors')),
       body: Column(
@@ -20,40 +31,46 @@ class DoctorScreen extends ConsumerWidget {
           Row(
             children: [
               Expanded(child: SearchBarWidget()),
-              ElevatedButton(onPressed: () {}, child: Text("See all")),
+              ElevatedButton(
+                onPressed: () {
+                  ref
+                      .read(specializationNotifierProvider.notifier)
+                      .setSpecialization('');
+                },
+                child: Text("See all"),
+              ),
               SizedBox(width: 10),
             ],
           ),
           DoctorSpecializationWidget(),
-        ],
-      ),
-    );
-  }
-}
-
-class DoctorSpecializationWidget extends ConsumerWidget {
-  const DoctorSpecializationWidget({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final listOfSpecializations = ref.watch(specializationListProvider);
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          ...listOfSpecializations.map((speciality) {
-            final icon = specialityIcon[speciality] ?? Icons.question_mark;
-            return Container(
-              height: 60.rsW,
-              width: 60.rsW,
-              margin: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: AppStyles.mainColor.withAlpha(50),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(icon, size: 30, color: AppStyles.mainColor),
-            );
-          }),
+          SizedBox(height: 10.rsH),
+          AsyncValueWidget(
+            value: doctorsAsyncValue,
+            onData: (doctors) {
+              if (doctors.isEmpty) {
+                return Expanded(
+                  child: Center(
+                    child: Text(
+                      'No doctors found',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Colors.grey,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                );
+              }
+              return ListView.builder(
+                itemCount: doctors.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  final doctor = doctors[index];
+                  return DoctorListTileWidget(doctor: doctor);
+                },
+              );
+            },
+          ),
+          SizedBox(height: 10.rsH),
         ],
       ),
     );

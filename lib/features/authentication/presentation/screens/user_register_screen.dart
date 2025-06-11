@@ -12,9 +12,9 @@ import '../../../../routes/routes.dart';
 import '../../../../utils/app_style.dart';
 import '../../../../utils/keys.dart';
 import '../controller/auth_controller.dart';
-import '../widgets/common_button.dart';
-import '../widgets/common_container.dart';
-import '../widgets/common_text_form_field.dart';
+import '../../../../common_widget/common_button.dart';
+import '../../../../common_widget/common_container.dart';
+import '../../../../common_widget/common_text_form_field.dart';
 import '/features/authentication/presentation/widgets/async_value_ui.dart';
 import '/utils/size_config.dart';
 

@@ -6,6 +6,6 @@ class BookingScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(body: Center(child: Text('Booking')));
+    return Scaffold(body: Center(child: Text('Booking Screen')));
   }
 }

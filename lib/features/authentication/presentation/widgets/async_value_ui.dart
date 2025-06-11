@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,6 +11,8 @@ extension AsyncValueUi on AsyncValue {
       if (!(ModalRoute.of(context)?.isCurrent ?? true)) {
         return; // Don't show dialog if the route is not current
       }
+
+      log('\n\n AsyncValueUi.showAlertDialogOnError: $error \n\n');
 
       final message = _errorMessage(error);
 

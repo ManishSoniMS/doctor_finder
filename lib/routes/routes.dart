@@ -1,8 +1,10 @@
+import 'package:doctor_finder/features/authentication/domain/doctor_user.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/authentication/data/auth_repository.dart';
+import '../features/doctor/presentation/screens/doctor_detail_screen.dart';
 import '../features/intro_screens/on_boarding_screen.dart';
 import '../features/authentication/presentation/screens/signin_screen.dart';
 import '../features/intro_screens/splash_screen.dart';
@@ -77,6 +79,14 @@ GoRouter goRouter(Ref ref) {
         path: '/main',
         name: AppRoute.main.name,
         builder: (context, state) => MainScreen(),
+      ),
+      GoRoute(
+        path: '/doctor-details',
+        name: AppRoute.doctorDetails.name,
+        builder: (context, state) {
+          final doctor = state.extra as DoctorUser;
+          return DoctorDetailScreen(doctor);
+        },
       ),
     ],
   );

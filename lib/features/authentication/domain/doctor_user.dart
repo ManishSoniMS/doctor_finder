@@ -6,6 +6,7 @@ class DoctorUser extends AppUser {
   final int? yearsOfExperience;
   final int rating;
   final int numberOfReviews;
+  final int numberOfPatients;
 
   const DoctorUser({
     required super.email,
@@ -22,6 +23,7 @@ class DoctorUser extends AppUser {
     this.yearsOfExperience,
     required this.rating,
     required this.numberOfReviews,
+    required this.numberOfPatients,
   });
 
   @override
@@ -42,7 +44,8 @@ class DoctorUser extends AppUser {
           description == other.description &&
           yearsOfExperience == other.yearsOfExperience &&
           rating == other.rating &&
-          numberOfReviews == other.numberOfReviews);
+          numberOfReviews == other.numberOfReviews &&
+          numberOfPatients == other.numberOfPatients);
 
   @override
   int get hashCode =>
@@ -59,7 +62,8 @@ class DoctorUser extends AppUser {
       description.hashCode ^
       yearsOfExperience.hashCode ^
       rating.hashCode ^
-      numberOfReviews.hashCode;
+      numberOfReviews.hashCode ^
+      numberOfPatients.hashCode;
 
   @override
   String toString() {
@@ -78,6 +82,7 @@ class DoctorUser extends AppUser {
         ' yearsOfExperience: $yearsOfExperience,'
         ' rating: $rating,'
         ' numberOfReviews: $numberOfReviews,'
+        ' numberOfPatients: $numberOfPatients,'
         '}';
   }
 
@@ -97,6 +102,7 @@ class DoctorUser extends AppUser {
     int? yearsOfExperience,
     int? rating,
     int? numberOfReviews,
+    int? numberOfPatients,
   }) {
     return DoctorUser(
       email: email ?? this.email,
@@ -113,6 +119,7 @@ class DoctorUser extends AppUser {
       yearsOfExperience: yearsOfExperience ?? this.yearsOfExperience,
       rating: rating ?? this.rating,
       numberOfReviews: numberOfReviews ?? this.numberOfReviews,
+      numberOfPatients: numberOfPatients ?? this.numberOfPatients,
     );
   }
 
@@ -133,6 +140,7 @@ class DoctorUser extends AppUser {
       'yearsOfExperience': yearsOfExperience,
       'rating': rating,
       'numberOfReviews': numberOfReviews,
+      'numberOfPatients': numberOfPatients,
     };
   }
 
@@ -152,6 +160,7 @@ class DoctorUser extends AppUser {
       yearsOfExperience: map['yearsOfExperience'],
       rating: map['rating'],
       numberOfReviews: map['numberOfReviews'],
+      numberOfPatients: map['numberOfPatients'] ?? 0,
     );
   }
 }

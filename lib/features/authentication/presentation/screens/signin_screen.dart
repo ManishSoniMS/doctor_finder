@@ -8,9 +8,9 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../routes/routes.dart';
 import '../../../../utils/app_style.dart';
 import '../controller/auth_controller.dart';
-import '../widgets/common_button.dart';
-import '../widgets/common_container.dart';
-import '../widgets/common_text_form_field.dart';
+import '../../../../common_widget/common_button.dart';
+import '../../../../common_widget/common_container.dart';
+import '../../../../common_widget/common_text_form_field.dart';
 
 class SignInScreen extends ConsumerStatefulWidget {
   const SignInScreen({super.key});

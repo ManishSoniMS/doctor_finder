@@ -1,3 +1,4 @@
+import 'package:doctor_finder/features/user_management/presentation/providers/specialization_provider.dart';
 import 'package:doctor_finder/utils/app_style.dart';
 import 'package:doctor_finder/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -39,24 +40,31 @@ class DoctorSpecialityWidget extends ConsumerWidget {
                       specialityIcon[speciality] ?? Icons.question_mark;
                   return Padding(
                     padding: EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 25.rsW,
-                          child: Icon(
-                            icon,
-                            size: 30,
-                            color: AppStyles.mainColor,
+                    child: InkWell(
+                      onTap: () {
+                        ref
+                            .read(specializationNotifierProvider.notifier)
+                            .setSpecialization(speciality);
+                      },
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 25.rsW,
+                            child: Icon(
+                              icon,
+                              size: 30,
+                              color: AppStyles.mainColor,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 10.rsW),
-                        Text(
-                          speciality,
-                          style: AppStyles.normalTextStyle.copyWith(
-                            color: Colors.black,
+                          SizedBox(height: 10.rsW),
+                          Text(
+                            speciality,
+                            style: AppStyles.normalTextStyle.copyWith(
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 }),

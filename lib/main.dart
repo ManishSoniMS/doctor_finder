@@ -21,12 +21,12 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final router = ref.watch(goRouterProvider);
+    SizeConfig.init(context);
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: buildThemeData(context),
       routerConfig: router,
       builder: (context, child) {
-        SizeConfig.init(context);
         return child!;
       },
     );

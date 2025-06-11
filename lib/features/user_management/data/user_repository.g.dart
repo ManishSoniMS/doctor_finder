@@ -183,7 +183,7 @@ class _LoadUserInformationProviderElement
   String get userId => (origin as LoadUserInformationProvider).userId;
 }
 
-String _$loadDoctorHash() => r'40c7e6e2f04e5e2221968e45f3d1a0a8df66fcfc';
+String _$loadDoctorHash() => r'737fa3ae2ec2b5322f1eee782fff45cbc7ca69ff';
 
 /// See also [loadDoctor].
 @ProviderFor(loadDoctor)
@@ -222,7 +222,7 @@ class LoadDoctorFamily extends Family<AsyncValue<List<DoctorUser>>> {
 }
 
 /// See also [loadDoctor].
-class LoadDoctorProvider extends AutoDisposeStreamProvider<List<DoctorUser>> {
+class LoadDoctorProvider extends StreamProvider<List<DoctorUser>> {
   /// See also [loadDoctor].
   LoadDoctorProvider(String speciality)
     : this._internal(
@@ -268,7 +268,7 @@ class LoadDoctorProvider extends AutoDisposeStreamProvider<List<DoctorUser>> {
   }
 
   @override
-  AutoDisposeStreamProviderElement<List<DoctorUser>> createElement() {
+  StreamProviderElement<List<DoctorUser>> createElement() {
     return _LoadDoctorProviderElement(this);
   }
 
@@ -288,13 +288,12 @@ class LoadDoctorProvider extends AutoDisposeStreamProvider<List<DoctorUser>> {
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin LoadDoctorRef on AutoDisposeStreamProviderRef<List<DoctorUser>> {
+mixin LoadDoctorRef on StreamProviderRef<List<DoctorUser>> {
   /// The parameter `speciality` of this provider.
   String get speciality;
 }
 
-class _LoadDoctorProviderElement
-    extends AutoDisposeStreamProviderElement<List<DoctorUser>>
+class _LoadDoctorProviderElement extends StreamProviderElement<List<DoctorUser>>
     with LoadDoctorRef {
   _LoadDoctorProviderElement(super.provider);
 

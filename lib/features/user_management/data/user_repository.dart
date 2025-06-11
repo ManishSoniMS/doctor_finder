@@ -35,7 +35,7 @@ class UserRepository {
         .where('type', isEqualTo: 'doctor');
 
     if (speciality.isNotEmpty) {
-      query = query.where('speciality', isEqualTo: speciality);
+      query = query.where('specialization', isEqualTo: speciality);
     }
 
     return query.snapshots().map((snapshot) {
@@ -63,7 +63,7 @@ Stream<AppUser> loadUserInformation(Ref ref, String userId) {
   return userRepository.loadUserInformation(userId);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<List<DoctorUser>> loadDoctor(Ref ref, String speciality) {
   final userRepository = ref.watch(userRepositoryProvider);
   return userRepository.loadDoctor(speciality);
